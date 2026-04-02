@@ -1,5 +1,5 @@
 import { produce } from 'immer'
-import { ActionTypes } from "./actions"
+import { ActionTypes } from './actions'
 
 export interface Cycle {
   id: string
@@ -24,8 +24,8 @@ export function cycleReducer(state: CycleState, action: any) {
       })
 
     case ActionTypes.INTERRUPT_CURRENT_CYCLE: {
-      const currentCycleIndex = state.cycles.findIndex(cycle => {
-        return cycle.id == state.activeCycleId
+      const currentCycleIndex = state.cycles.findIndex((cycle) => {
+        return cycle.id === state.activeCycleId
       })
 
       if (currentCycleIndex < 0) {
@@ -38,8 +38,8 @@ export function cycleReducer(state: CycleState, action: any) {
       })
     }
     case ActionTypes.MARK_CURRENT_CYCLE_AS_FINISHED: {
-      const currentCycleIndex = state.cycles.findIndex(cycle => {
-        return cycle.id == state.activeCycleId
+      const currentCycleIndex = state.cycles.findIndex((cycle) => {
+        return cycle.id === state.activeCycleId
       })
 
       if (currentCycleIndex < 0) {

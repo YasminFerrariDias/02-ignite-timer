@@ -1,11 +1,21 @@
-import { createContext, ReactNode, useEffect, useReducer, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react'
 import { Cycle, cycleReducer } from '../reducers/cycles/reducer'
-import { addNewCycleAction, interruptCurrentCycleAction, markCurrentCycleAsFinishedAction } from "../reducers/cycles/actions";
-import differenceInSeconds from "date-fns/differenceInSeconds";
+import {
+  addNewCycleAction,
+  interruptCurrentCycleAction,
+  markCurrentCycleAsFinishedAction,
+} from '../reducers/cycles/actions'
+import differenceInSeconds from 'date-fns/differenceInSeconds'
 
 interface CreateCycleData {
-  task: string;
-  minutesAmount: number;
+  task: string
+  minutesAmount: number
 }
 
 interface CyclesContextType {
@@ -26,20 +36,26 @@ interface CyclesContextProviderProps {
 }
 
 export function CyclesContextProvider({
-  children
+  children,
 }: CyclesContextProviderProps) {
-  const [cyclesState, dispatch] = useReducer(cycleReducer, {
-    cycles: [],
-    activeCycleId: null,
-  }, (initialState) => {
-    const storedStateAsJSON = localStorage.getItem('@iginite-timer:cycles-state-1.0.0')
+  const [cyclesState, dispatch] = useReducer(
+    cycleReducer,
+    {
+      cycles: [],
+      activeCycleId: null,
+    },
+    (initialState) => {
+      const storedStateAsJSON = localStorage.getItem(
+        '@iginite-timer:cycles-state-1.0.0',
+      )
 
-    if (storedStateAsJSON) {
-      return JSON.parse(storedStateAsJSON)
-    }
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
 
-    return initialState
-  })
+      return initialState
+    },
+  )
 
   const { cycles, activeCycleId } = cyclesState
   const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
@@ -94,7 +110,7 @@ export function CyclesContextProvider({
         amountSecondsPassed,
         setSecondsPassed,
         createNewCycle,
-        interruptCurrentCycle
+        interruptCurrentCycle,
       }}
     >
       {children}
