@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useReducer, useState } from "react";
-import { ActionTypes, Cycle, cycleReducer } from '../reducers/cycles/reducer'
+import { Cycle, cycleReducer } from '../reducers/cycles/reducer'
 import { addNewCycleAction, interruptCurrentCycleAction, markCurrentCycleAsFinishedAction } from "../reducers/cycles/actions";
 
 interface CreateCycleData {
